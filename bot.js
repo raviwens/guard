@@ -8,14 +8,6 @@ const moment = require('moment');
 const express = require('express');
 const app = express();
 const http = require('http');
-    app.get("/", (request, response) => {
-    console.log(` az önce pinglenmedi. Sonra ponglanmadı... ya da başka bir şeyler olmadı.`);
-    response.sendStatus(200);
-    });
-    app.listen(process.env.PORT);
-    setInterval(() => {
-    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-    }, 280000);
 const eco = require('discord-economy');
 const jimp = require('jimp');
 require('./util/eventLoader')(client);
@@ -162,7 +154,7 @@ client.on('message', async (msg, member, guild) => {
   let i = await  db.fetch(`saas_${msg.guild.id}`)
       if(i === 'açık') {
         if (msg.content.toLowerCase() === 'sa') {
-        msg.reply('Aleyküm Selam Knk Hoşgeldin');      
+        msg.reply('Aleyküm Selam');      
       } 
       }
     }); 
