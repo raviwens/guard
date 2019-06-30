@@ -18,10 +18,7 @@ const http = require('http');
     }, 280000);
 const eco = require('discord-economy');
 const jimp = require('jimp');
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+require('./util/eventLoader')(client);
 
 var prefix = ayarlar.prefix;
 
@@ -45,6 +42,106 @@ fs.readdir('./komutlar/', (err, files) => {
 });
 
 
+  client.on(`guildMemberAdd`, async member => {
+  const e = new Discord.RichEmbed()
+    .setColor(`RANDOM`)
+    .setImage(`https://media.giphy.com/media/l4JyOCNEfXvVYEqB2/giphy.gif`)
+    .addField(`***Sunucumuza Geldiğin İçin Teşekkürler.!***`, `Yasuo Bot İyi Eğlenceler diler`)
+    .addField(`Davet Linkleri;`, `[Botu Sunucuna Eklemek için Tıkla](BOT DAVET)\n[Botun Destek Sunucusu](https://discord.gg/9FuVpwT)`)
+    .setFooter(`Bu Sunucu 7/24 Alpha tarafından korunuyor.`)
+  member.send(e);
+});
+  
+client.reload = command => {
+  return new Promise((resolve, reject) => {
+    try {
+      delete require.cache[require.resolve(`./komutlar/${command}`)];
+      let cmd = require(`./komutlar/${command}`);
+      client.commands.delete(command);
+      client.aliases.forEach((cmd, alias) => {
+        if (cmd === command) client.aliases.delete(alias);
+      });
+      client.commands.set(command, cmd);
+      cmd.conf.aliases.forEach(alias => {
+        client.aliases.set(alias, cmd.help.name);
+      });
+      resolve();
+    } catch (e){
+      reject(e);
+    }
+  });
+};
+
+client.load = command => {
+  return new Promise((resolve, reject) => {
+    try {
+      let cmd = require(`./komutlar/${command}`);
+      client.commands.set(command, cmd);
+      cmd.conf.aliases.forEach(alias => {
+        client.aliases.set(alias, cmd.help.name);
+      });
+      resolve();
+    } catch (e){
+      reject(e);
+    }
+  });
+};
+
+
+client.on("guildMemberAdd", async member => {
+   const fs = require('fs');
+    let gkanal = JSON.parse(fs.readFileSync("./ayarlar/glog.json", "utf8"));
+    const gözelkanal = member.guild.channels.get(gkanal[member.guild.id].resim)
+    if (!gözelkanal) return;
+     let username = member.user.username;
+        if (gözelkanal === undefined || gözelkanal === null) return;
+        if (gözelkanal.type === "text") {
+            const bg = await jimp.read("https://cdn.discordapp.com/attachments/450693709076365323/473184528148725780/guildAdd.png");
+            const userimg = await jimp.read(member.user.avatarURL);
+            var font;
+            if (member.user.tag.length < 15) font = await jimp.loadFont(jimp.FONT_SANS_128_WHITE);
+            else if (member.user.tag.length > 15) font = await jimp.loadFont(jimp.FONT_SANS_64_WHITE);
+            else font = await jimp.loadFont(jimp.FONT_SANS_32_WHITE);
+            await bg.print(font, 430, 170, member.user.tag);
+            await userimg.resize(362, 362);
+            await bg.composite(userimg, 43, 26).write("./img/"+ member.id + ".png");
+              setTimeout(function () {
+                    gözelkanal.send(new Discord.Attachment("./img/" + member.id + ".png"));
+              }, 1000);
+              setTimeout(function () {
+                fs.unlink("./img/" + member.id + ".png");
+              }, 10000);
+        }
+    })
+
+client.on("guildMemberRemove", async member => {
+   const fs = require('fs');
+    let gkanal = JSON.parse(fs.readFileSync("./ayarlar/glog.json", "utf8"));
+    const gözelkanal = member.guild.channels.get(gkanal[member.guild.id].resim)
+    if (!gözelkanal) return;
+        let username = member.user.username;
+        if (gözelkanal === undefined || gözelkanal === null) return;
+        if (gözelkanal.type === "text") {            
+                        const bg = await jimp.read("https://cdn.discordapp.com/attachments/450693709076365323/473184546477572107/guildRemove.png");
+            const userimg = await jimp.read(member.user.avatarURL);
+            var font;
+            if (member.user.tag.length < 15) font = await jimp.loadFont(jimp.FONT_SANS_128_WHITE);
+            else if (member.user.tag.length > 15) font = await jimp.loadFont(jimp.FONT_SANS_64_WHITE);
+            else font = await jimp.loadFont(jimp.FONT_SANS_32_WHITE);
+            await bg.print(font, 430, 170, member.user.tag);
+            await userimg.resize(362, 362);
+            await bg.composite(userimg, 43, 26).write("./img/"+ member.id + ".png");
+              setTimeout(function () {
+                    gözelkanal.send(new Discord.Attachment("./img/" + member.id + ".png"));
+              }, 1000);
+              setTimeout(function () {
+                fs.unlink("./img/" + member.id + ".png");
+              }, 10000);
+        }
+    })
+
+
+
 client.unload = command => {
   return new Promise((resolve, reject) => {
     try {
@@ -61,12 +158,14 @@ client.unload = command => {
   });
 };
 
-
-client.on('message', msg => {
-  if (msg.content.toLowerCase() === 'sa') {
-    msg.reply('Aleyküm Selam');
-  }
-});
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'sa') {
+        msg.reply('Aleyküm Selam Knk Hoşgeldin');      
+      } 
+      }
+    }); 
 
 client.elevation = message => {
   if(!message.guild) {
@@ -78,30 +177,20 @@ client.elevation = message => {
   return permlvl;
 };
 
+var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
+// client.on('debug', e => {
+//   console.log(chalk.bgBlue.green(e.replace(regToken, 'that was redacted')));
+// });
 
-client.on('message', msg => {
-  if (msg.content === 'Selam') {
-    msg.reply('Aleyküm Selam!');
-  }
+client.on('warn', e => {
+  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
 });
 
-client.on('message', msg => {
-  if (msg.content === 'Sa') {
-    msg.reply('Aleyküm Selam!');
-  }
+client.on('error', e => {
+  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
 });
-
-client.on('message', msg => {
-  if (msg.content === 'Selamun Aleyküm') {
-    msg.reply('Aleyküm Selam!');
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'Sea') {
-    msg.reply('Aleyküm Selam!');
-  }
-});
+  
 
 
-client.login('NTk0OTc3ODQ3NjEzODQ5NjQw.XRkT3g.Z5-SvMfPDMLXQi0wS-u_Eod8i_E');
+  
+client.login(ayarlar.token)
