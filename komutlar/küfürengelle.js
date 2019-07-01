@@ -12,10 +12,10 @@ exports.run = (client, message) => {
 
     var errembed = new Discord.RichEmbed()
     .setColor("RANDOM")
-    .setDescription(`Yanlış kullanım tespit edildi!`)
+    .setDescription(`Yanlış kullanım tespit edildi! /küfür-engelle aç - kapat"`)
     if(secenekler.length < 1) return message.channel.send(errembed);
     //if(secenekler === "aç" || "kapat") return message.channel.send(errembed);
-      if(secenekler.length < 1) return message.reply("Aktif hale getirmek için v!küfür-engelle aç & v!küfür-engelle kapat").then(m => m.delete(10000));
+      if(secenekler.length < 1) return message.reply("Aktif hale getirmek için /küfür-engelle aç & /küfür-engelle kapat").then(m => m.delete(10000));
 
     message.delete();
 
@@ -52,5 +52,5 @@ exports.run = (client, message) => {
       exports.help = {
         name: 'küfür-engelle',
         description: 'Küfür engelleme sistemini, açıp kapatmanızı sağlar.',
-        usage: 'küfür-engelle <aç> veya <kapat>'
+        usage: '/küfür-engelle <aç> veya <kapat>'
       };
