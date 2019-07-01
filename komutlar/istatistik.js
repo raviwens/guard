@@ -18,23 +18,22 @@ exports.run = (bot, message, args) => {
         const embedStats = new Discord.RichEmbed()
             .setAuthor(bot.user.username + " | İstatistikler", bot.user.avatarURL)
             .setColor('RANDOM')
-            .addField("<a:Partner:504229364716797955> Bellek Kullanımı", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`)
-            .addField("<a:blobCoolBoy:504229364209156096> Çalışma Süresi ", `${duration}`)
-            .addField("<a:yukleniyor:505059163404107786> Bot İstatistikleri", stripIndents`
-            <a:blobDansDans:504229374665424896> Kullanıcı: ${bot.users.size.toLocaleString()}
-            <a:blobDansDans:504229374665424896> Sunucu: ${bot.guilds.size.toLocaleString()}
-            <a:blobDansDans:504229374665424896> Kanal: ${bot.channels.size.toLocaleString()}
-            <a:blobDansDans:504229374665424896> Müzik Çalınan Sunucu Sayısı: ${bot.voiceConnections.size ? bot.voiceConnections.size : '0'}
-            <a:blobDansDans:504229374665424896> Ping: ${Math.round(bot.ping)}ms.
+            .addField(":wave:  Bellek Kullanımı", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`)
+            .addField(":white_check_mark: Çalışma Süresi ", `${duration}`)
+            .addField(":thumbsup: Bot İstatistikleri", stripIndents`
+            :white_check_mark: Kullanıcı: ${bot.users.size.toLocaleString()}
+            :white_check_mark: Sunucu: ${bot.guilds.size.toLocaleString()}
+            :white_check_mark: Kanal: ${bot.channels.size.toLocaleString()}
+            :white_check_mark: Ping: ${Math.round(bot.ping)}ms.
             `)
-            .addField("<a:yukleniyor:505059163404107786> Versiyonlar", stripIndents`
-            <a:BugHanter:504229364402225163> Discord.js: v${version}
-            <a:BugHanter:504229364402225163> Node.js: ${process.version}
+            .addField(":thumbsup:Versiyonlar", stripIndents`
+            :white_check_mark: Discord.js: v${version}
+            :white_check_mark: Node.js: ${process.version}
             `)
-            .addField("<a:Staff:504229364729118730> CPU", `\`\`\`md\n${os.cpus().map(i => `${i.model}`)[0]}\`\`\``)
-            .addField("<a:Staff:504229364729118730> CPU Kullanımı", `\`${percent.toFixed(2)}%\``)
-            .addField("<a:Staff:504229364729118730> Bit", `\`${os.arch()}\``, true)
-            .addField("<a:Staff:504229364729118730> İşletim Sistemi", `\`\`${os.platform()}\`\``) 
+            .addField(":cyclone: CPU", `\`\`\`md\n${os.cpus().map(i => `${i.model}`)[0]}\`\`\``)
+            .addField(":cyclone: CPU Kullanımı", `\`${percent.toFixed(2)}%\``)
+            .addField(":cyclone: Bit", `\`${os.arch()}\``, true)
+            .addField(":cyclone: İşletim Sistemi", `\`\`${os.platform()}\`\``) 
         message.channel.send(embedStats)
     });
 };
@@ -47,8 +46,8 @@ exports.conf = {
   };
   
   exports.help = {
-    name: 'botayrıntı',
+    name: 'istatistik',
     category: "bot",
     description: 'Botun istatistiklerini gösterir.',
-    usage: '.botayrıntı'
+    usage: 'istatistik'
   };
