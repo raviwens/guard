@@ -26,6 +26,6 @@ exports.conf = {
   
   exports.help = {
     name: 'kaccm',
-    description: 'kaccm',
+    description: 'kaccm :D?',
     usage: 'kaccm'
   };

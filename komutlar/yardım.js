@@ -1,32 +1,37 @@
 const Discord = require('discord.js');
 const ayarlar = require('../ayarlar.json');
 
-let botid = ('') //bu yere botun id'sini yapıştırın.
-//eğer botunuz dbl(discord bot list) de yoksa Bota Oy Ver (Vote) olmucaktır.
+var prefix = ayarlar.prefix;
 
-exports.run = (client, message, args) => {
-    const embed = new Discord.RichEmbed()
-        .setAuthor(`${client.user.username} `, client.user.avatarURL)
-        .setColor('0x36393E')
-        .setTitle(`${client.user.username} - Komutlar`)
-        .setDescription(`:white_small_square: | **${ayarlar.prefix}yetkili** Moderasyon Komutları.\n :white_small_square: | **${ayarlar.prefix}kullanıcı** Kullanıcıya Komutları.\n :white_small_square: |  **${ayarlar.prefix}eğlence** Eğlence Komutları.\n :white_small_square: | **${ayarlar.prefix}ekstra** Ekstra Komutları.\n :white_small_square: | **${ayarlar.prefix}preimum**  BAKIMDA ! \n`)
-        .setThumbnail(client.user.avatarURL)
-        .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/V3jgrXD) **|** [Bota Oy Ver (Bakımda)](https://discordbots.org/bot/${botid}/vote) **|** [Web Sitesi](Bakımda)`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
-        .setFooter(`${message.author.username} Tarafından İstendi.`, message.author.avatarURL)
-    return message.channel.sendEmbed(embed);
-  
-  
+exports.run = (client, message, params) => {
+  if (!params[0]) {
+    const commandNames = Array.from(client.commands.keys());
+    const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
+    message.channel.sendCode('asciidoc', `= Komut Listesi =\n\n[Komut hakkında bilgi için ${ayarlar.prefix}yardım <komut adı>]\n\n${client.commands.map(c => `${ayarlar.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}`).join('\n')}`);
+  if (message.channel.type !== 'dm') {
+    const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(message.author.username, message.author.avatarURL)
+    message.channel.sendEmbed(ozelmesajkontrol) }
+  } else {
+    let command = params[0];
+    if (client.commands.has(command)) {
+      command = client.commands.get(command);
+      message.channnel.sendCode('asciidoc', `= ${command.help.name} = \n${command.help.description}\nDoğru kullanım: ` + prefix + `${command.help.usage}`);
+    }
+  }
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['help'],
-  permLevel: 0,
+  aliases: ['h', 'halp', 'help', 'y'],
+  permLevel: 0
 };
 
 exports.help = {
   name: 'yardım',
-  description: '',
-  usage: ''
+  description: 'Tüm komutları gösterir.',
+  usage: 'yardım [komut]'
 };
