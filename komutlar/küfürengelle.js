@@ -5,7 +5,7 @@ let küfürEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "
 var ayarlar = require('../ayarlar.json');
 
 exports.run = (client, message) => {
-  if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`:fire: Yeterli yetki, bulunmamakta!`);
+if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`:fire: Yeterli yetki, bulunmamakta!`);
 
     let args = message.content.split(' ').slice(1);
     const secenekler = args.slice(0).join(' ');
@@ -46,7 +46,7 @@ exports.run = (client, message) => {
         enabled: true,
         guildOnly: false,
         aliases: ['küfür-engel'],
-        permLevel: 3
+        permLevel: 4
       };
       
       exports.help = {

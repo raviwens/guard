@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
     const embed = new Discord.RichEmbed()
     .setColor("RANDOM")
     .setAuthor(`${client.user.username} Eğlence Komutları`)
-    .addField('prefix+komut', 'açıklama/kullanım amacı')//ne kadar eğlence komutunuz varsa o kadar .addField('prefix+komut', 'açıklama/kullanım amacı') koyun
+    .addField('/aşkölçer @kullanıcı', 'Kullanıcı ile aşkınızı ölçer :)') ('/espri', 'Bot Espri Yapar.') ('/kaçcm', ':D?') ('/emojiyazı <yazı>', 'Yazınızı Emojilerle Yazar.') ('/wasted ', 'PP`nizi Wastedlaştırır. :D')//ne kadar eğlence komutunuz varsa o kadar .addField('prefix+komut', 'açıklama/kullanım amacı') koyun
     .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=${botid}&scope=bot&permissions=8) **|** [Destek Sunucusu](https://discord.gg/BAĞLANTI) **|** [Bota Oy Ver (Vote)](https://discordbots.org/bot/${botid}/vote) **|** [Web Sitesi]()`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
     message.channel.sendEmbed(embed);
 

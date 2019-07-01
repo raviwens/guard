@@ -4,6 +4,8 @@ let linkEngel = JSON.parse(fs.readFileSync("././jsonlar/linkEngelle.json", "utf8
 
 exports.run = async (client, message) => {
   
+ if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`:fire: Yeterli yetki, bulunmamakta!`);
+  
     let args = message.content.split(' ').slice(1);
     const secenekler = args.slice(0).join(' ');
 
@@ -55,7 +57,7 @@ exports.run = async (client, message) => {
         enabled: true,
         guildOnly: false,
         aliases: ['link-engel', 'reklamkoruması', 'reklam-koruması', 'linkengel'],
-        permLevel: 3
+        permLevel: 4
       };
       
     exports.help = {
