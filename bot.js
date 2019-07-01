@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { Command } = require('discord.js-commando');
 const client = new Discord.Client();
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
@@ -7,6 +8,7 @@ const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
 const snekfetch = require('snekfetch');
+let linkEngel = JSON.parse(fs.readFileSync("././jsonlar/linkEngelle.json", "utf8"));
 
 var prefix = ayarlar.prefix;
 
@@ -90,6 +92,74 @@ client.unload = command => {
       reject(e);
     }
   });
+};
+
+client.on("message", msg => { 
+if (!linkEngel[msg.guild.id]) return;
+if (linkEngel[msg.guild.id].linkEngel === "kapali") return;
+    if (linkEngel[msg.guild.id].linkEngel === "acik") {
+    var regex = new RegExp(/(discord.gg|http|.gg|.com|.net|.org|invite|İnstagram|Facebook|watch|Youtube|youtube|facebook|instagram)/)
+    if (regex.test(msg.content)== true) {
+    if (!msg.member.hasPermission("ADMINISTRATOR")) {
+      msg.delete()
+       msg.channel.send(`<@${msg.author.id}>`).then(message => message.delete(5000));
+        var e = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor("Link Engeli!")
+        .setDescription(`Bu sunucuda linkler **${client.user.username}** tarafından engellenmektedir! Link atmana izin vermeyeceğim!`)
+        msg.channel.send(e).then(message => message.delete(5000));
+    }
+}
+    }
+});
+
+const { Command } = require('discord.js-commando');
+var yazılar = new Set();
+yazılar.add("evet");
+yazılar.add("hayır");
+module.exports = class LogCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'reklam-engelle',
+            aliases: ['reklamengelle', 'reklamkapa'],
+            group: 'ayarlar',
+            memberName: 'reklam-engelle',
+            description: 'Sunucunuz için reklam engellemeyi açar/kapatır.',
+            examples: ['reklamengelle evet', 'reklam-engelle hayır'],
+            guildOnly: true,
+            args: [
+                {
+                    key: 'yazı',
+                    label: 'değer',
+                    prompt: 'Reklamlar engellensin mi? (**evet** ya da **hayır** yazınız.)',
+                    type: 'string',
+                    validate: val => {
+                        if (!yazılar.has(val)) return "Evet ya da hayır şeklinde cevap veriniz.";
+                        return true;
+                    }
+                }
+            ]
+        });    
+    }
+
+    hasPermission(msg){
+        return msg.member.hasPermission('ADMINISTRATOR');
+    }
+
+    run(msg, args) {
+        var str = args.yazı;
+        const prevch = this.client.provider.get(msg.guild, 'reklam-engelle')
+        if (str === "evet") {
+            msg.reply(`Reklam engelleme artık aktif!`);
+            this.client.provider.set(msg.guild, 'reklam-engelle', true);
+            if(prevch && prevch === true) return msg.reply(`Reklam engelleme zaten aktif!`);
+        }
+        if (str === "hayır") {
+            this.client.provider.set(msg.guild, 'reklam-engelle', false);
+            msg.reply(`Reklam engelleme artık de-aktif!`);
+            if(prevch && prevch === false) return msg.reply(`Reklam engelleme zaten de-aktif!`);
+        }
+    }
 };
 
 
