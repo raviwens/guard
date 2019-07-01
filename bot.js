@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 const client = new Discord.Client();
+const db = require ('quick.db');
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
 const Jimp = require('jimp');
@@ -9,8 +10,10 @@ const moment = require('moment');
 require('./util/eventLoader')(client);
 const snekfetch = require('snekfetch');
 let linkEngel = JSON.parse(fs.readFileSync("././jsonlar/linkEngelle.json", "utf8"));
+let kufurEngel = JSON.parse(fs.readFileSync("./jsonlar/kufurEngelle.json", "utf8"));
 
 var prefix = ayarlar.prefix;
+var yazılar = new Set();
 
 const log = message => {
   console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
@@ -113,54 +116,49 @@ if (linkEngel[msg.guild.id].linkEngel === "kapali") return;
     }
 });
 
-const { Command } = require('discord.js-commando');
-var yazılar = new Set();
-yazılar.add("evet");
-yazılar.add("hayır");
-module.exports = class LogCommand extends Command {
-    constructor(client) {
-        super(client, {
-            name: 'reklam-engelle',
-            aliases: ['reklamengelle', 'reklamkapa'],
-            group: 'ayarlar',
-            memberName: 'reklam-engelle',
-            description: 'Sunucunuz için reklam engellemeyi açar/kapatır.',
-            examples: ['reklamengelle evet', 'reklam-engelle hayır'],
-            guildOnly: true,
-            args: [
-                {
-                    key: 'yazı',
-                    label: 'değer',
-                    prompt: 'Reklamlar engellensin mi? (**evet** ya da **hayır** yazınız.)',
-                    type: 'string',
-                    validate: val => {
-                        if (!yazılar.has(val)) return "Evet ya da hayır şeklinde cevap veriniz.";
-                        return true;
-                    }
-                }
-            ]
-        });    
-    }
+client.on("message", msg => {
+    const kzgn = client.emojis.get("512302904141545509");
+    const embedlul = new Discord.RichEmbed()
+      .setColor(0x00AE86)
+      .setDescription( msg.author + " Reklam Yasak Bunu Bilmiyormusun!")
+    
+const embedlulz = new Discord.RichEmbed()
+    .setTitle("Sunucunda " + msg.author.tag + " reklam yapıyor!")
+      .setColor(0x00AE86)
+      .setDescription("?uyar <kişi> komutu ile onu uyarabilir ya da ?kick <kişi> veya ao!ban <kişi> komutlarını kullanarak onu sunucudan uzaklaştırabilirsin!")
+    .addField("Kullanıcının mesajı:", "**" + msg.content + "**")
 
-    hasPermission(msg){
-        return msg.member.hasPermission('ADMINISTRATOR');
-    }
+if (msg.content.toLowerCase().match(/(discord.gg|http|.gg|.com|.net|.org|invite|İnstagram|Facebook|watch|Youtube|youtube|facebook|instagram)/) && msg.channel.type === "text" && msg.channel.permissionsFor(msg.guild.member(client.user)).has("MANAGE_MESSAGES")) {
+    if(msg.member.hasPermission('BAN_MEMBERS')){
+    return;
+    } else {
+    msg.delete(30).then(deletedMsg => {
+     deletedMsg.channel.send(embedlul)
+     msg.guild.owner.send(embedlulz).catch(e => {
+            console.error(e);
+          });
+        }).catch(e => {
+          console.error(e);
+        });
+      };
+      };
+    })
+;
 
-    run(msg, args) {
-        var str = args.yazı;
-        const prevch = this.client.provider.get(msg.guild, 'reklam-engelle')
-        if (str === "evet") {
-            msg.reply(`Reklam engelleme artık aktif!`);
-            this.client.provider.set(msg.guild, 'reklam-engelle', true);
-            if(prevch && prevch === true) return msg.reply(`Reklam engelleme zaten aktif!`);
-        }
-        if (str === "hayır") {
-            this.client.provider.set(msg.guild, 'reklam-engelle', false);
-            msg.reply(`Reklam engelleme artık de-aktif!`);
-            if(prevch && prevch === false) return msg.reply(`Reklam engelleme zaten de-aktif!`);
-        }
+client.on("message", msg => {
+  if (!msg.guild) return;
+  if (!kufurEngel[msg.guild.id]) return;
+  if (kufurEngel[msg.guild.id].küfürEngel === 'kapali') return;
+    if (kufurEngel[msg.guild.id].küfürEngel=== 'acik') {
+      const kufur = ["mk", "amk", "aq", "orospu", "oruspu", "oç", "sikerim", "yarrak", "piç", "amq", "sik", "amcık", "çocu", "sex", "seks", "amına", "orospu çocuğu", "sg", "siktir git"];
+  if (kufur.some(word => msg.content.toLowerCase().includes(word)) ) {
+    if (!msg.member.hasPermission("ADMINISTRATOR")) {
+      msg.delete()
+       msg.reply("Küfür filtresi, aktif!").then(message => message.delete(3000));
     }
-};
+}
+    }
+});
 
 
     client.on('message', async msg => {
