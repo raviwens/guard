@@ -5,6 +5,7 @@ dependencies:
   bindings: 1.5.0
   body-parser: 1.19.0
   canvas: 2.6.0
+  canvas-constructor: 3.1.0
   chalk: 2.4.2
   cheerio: 1.0.0-rc.3
   cleverbot.io: 1.0.4
@@ -1055,6 +1056,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-gzVrHyyrvgt0YpDm7pn04MQt8gjh0ZAhN4ZDyCRtGl6YnuuK6b4aiUTD7G52r9l4YNmxfTtEscb92vxtAlL6XQ==
+  /canvas-constructor/3.1.0:
+    dev: false
+    engines:
+      node: '>=8.6.0'
+    peerDependencies:
+      canvas: '*'
+    resolution:
+      integrity: sha512-S3CIisunkG6IqDIhCecPkm+xx5iTvsum3pDH3a96Tl7uS1h1Me1dfePwBjnt83I2OqtUopZoFYtTgjYpcNV2Aw==
   /canvas/2.6.0:
     dependencies:
       nan: 2.14.0
@@ -6140,6 +6149,7 @@ specifiers:
   bindings: ^1.5.0
   body-parser: ^1.19.0
   canvas: ^2.6.0
+  canvas-constructor: ^3.1.0
   chalk: ^2.4.2
   cheerio: ^1.0.0-rc.2
   cleverbot.io: ^1.0.4
