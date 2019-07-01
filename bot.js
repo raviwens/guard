@@ -100,6 +100,14 @@ client.unload = command => {
   }
 });
 
+
+    client.on('message', async msg => {
+  if (msg.content.toLowerCase() === 'Selamun Aleyküm') {
+    await msg.react('🇦');
+    msg.react('🇸');
+  }
+});
+
 var f = [];
 function factorial (n) {
   if (n == 0 || n == 1)
@@ -157,6 +165,30 @@ client.on('message', msg => {
       .addField('BOT mu?', msg.author.bot ? '\n Evet' : 'Hayır')
       console.log("!kullanıcıbilgim komutu " + msg.author.username + " tarafından kullanıldı.")
       return msg.channel.sendEmbed(kullanicibilgimk);
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'Selamun Aleyküm') {
+    msg.reply('Aleyküm Selam!');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'Sea') {
+    msg.reply('Aleyküm Selam!');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'Selam') {
+    msg.reply('Aleyküm Selam!');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'Sa') {
+    msg.reply('Aleyküm Selam!');
   }
 });
 
