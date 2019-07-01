@@ -5,6 +5,7 @@ const ayarlar = require('../ayarlar.json');
 var prefix = ayarlar.prefix
 
 exports.run = (client, message, args) => {
+  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
   if (!message.guild) {
   const ozelmesajuyari = new 'Discord'.RichEmbed()
   .setColor("RANDOM")
@@ -50,7 +51,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: ['ld'],
-  permLevel: 2
+  permLevel: 4
 };
 
 exports.help = {

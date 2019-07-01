@@ -1,32 +1,31 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+exports.run = function(client, message, args) {
+  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
 
 
-exports.run = (client, message, args) => {
-    let mesaj = args.slice(0).join(' ');
-    if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply('Bunun için gerekli iznin yok');
-    if (mesaj.length < 1) return message.reply('Ödülü Yazmayı Unuttun ');
-    message.delete();
-    const embed = new Discord.RichEmbed()
-    .addField('Sunucu İsmi:', message.guild.name , true)    
-    .setColor('RANDOM')
-    .addField('Ödül', mesaj)
-    .addField("Çekilişi Başlatan:", `<@${message.author.id}>`, true)
+
+    const çekiliş = new Discord.RichEmbed()
+    .setAuthor(message.author.username, message.author.avatarURL)
+    .setTitle("Çekiliş!", true)
+    .addField("Çekilişi Yapan:", `<@${message.author.id}>`, true)
     .addField("Çekilişin Yapıldığı Kanal:", message.channel)
     .addField("Çekilişin Yapıldığı Zaman:", message.createdAt)
-    .addField(':tada:5Çekilişi Kazanan :tada:', `<@${message.guild.members.random().id}>`)
-    .setThumbnail(message.guild.iconURL)
-    return message.channel.sendEmbed(embed);
+    .addField(`Çekilişi Kazanan:`, `<@${message.guild.members.random().id}>`, true)
+    .setColor("RANDOM")
+    .setDescription('')
+    return message.channel.sendEmbed(çekiliş);
+    
 };
 
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 3
-  };
-  
-  exports.help = {
-    name: 'çekiliş',
-    description: 'Çekiliş Yapar',
-    usage: 'çekiliş'
-  };
+  enabled: true,
+  guildOnly: false,
+  aliases: ["çekilişyap"],
+  permLevel: 4
+};
+
+exports.help = {
+  name: 'çekilişyap',
+  description: 'Çekiliş yapar.',
+  usage: 'çekilişyap'
+};
