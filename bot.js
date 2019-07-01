@@ -214,6 +214,8 @@ client.on("guildMemberRemove", async member => {
     })
 
 
+
+
     client.on('message', async msg => {
   if (msg.content.toLowerCase() === 'sa') {
     await msg.react('🇦');
