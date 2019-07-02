@@ -4,6 +4,17 @@ const client = new Discord.Client();
 const db = require ('quick.db');
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
+const express = reqire('express')
+const app = express();
+const http = require('http');
+    app.get("/", (request, response) => {
+    console.log(` az önce pinglenmedi. Sonra ponglanmadı... ya da başka bir şeyler olmadı.`);
+    response.sendStatus(200);
+    });
+    app.listen(process.env.PORT);
+    setInterval(() => {
+    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+    }, 280000);
 const Jimp = require('jimp');
 const fs = require('fs');
 const moment = require('moment');
@@ -19,7 +30,7 @@ const log = message => {
   console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
 };
 
-const http = require('http');
+const h
 const express = require('express');
 const app = express();
 app.get("/", (request, response) => {
