@@ -4,7 +4,7 @@ const client = new Discord.Client();
 const db = require ('quick.db');
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
-const express = reqire('express')
+const express = require('express')
 const app = express();
 const http = require('http');
     app.get("/", (request, response) => {
@@ -30,17 +30,6 @@ const log = message => {
   console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
 };
 
-const h
-const express = require('express');
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping tamamdır.");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://gamert.glitch.me/`);
-}, 280000);
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
