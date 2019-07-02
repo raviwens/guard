@@ -504,30 +504,66 @@ client.on('message', msg => {
   }
 });
 
-client.on('message', msg => {
-  if (msg.content === 'Selamun Aleyküm') {
-    msg.reply('Aleyküm Selam!');
-  }
-});
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'sa') {
+        msg.reply('Aleyküm Selam Hoşgeldin');      
+      } 
+      }
+    }); 
 
-client.on('message', msg => {
-  if (msg.content === 'Sea') {
-    msg.reply('Aleyküm Selam!');
-  }
-});
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'Selamun Aleyküm') {
+        msg.reply('Aleyküm Selam Hoşgeldin');      
+      } 
+      }
+    }); 
 
-client.on('message', msg => {
-  if (msg.content === 'Selam') {
-    msg.reply('Aleyküm Selam!');
-  }
-});
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'Sa') {
+        msg.reply('Aleyküm Selam Hoşgeldin');      
+      } 
+      }
+    }); 
 
-client.on('message', msg => {
-  if (msg.content === 'Sa') {
-    msg.reply('Aleyküm Selam!');
-  }
-});
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'Sea') {
+        msg.reply('Aleyküm Selam Hoşgeldin');      
+      } 
+      }
+    }); 
 
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'Selam') {
+        msg.reply('Aleyküm Selam Hoşgeldin');      
+      } 
+      }
+    }); 
+
+
+const activities_list = [
+    "/yardım", // Sadece Tırnak Yani " İşareti İçinde Yazmakta Olan Mesajları Değiştirin.
+    "/sunucu-kur Hazır Sunucu Kurar.!", // Sadece Tırnak Yani " İşareti İçinde Yazmakta Olan Mesajları Değiştirin.
+    "Serverinizi Korumaktadır.!", // Sadece Tırnak Yani " İşareti İçinde Yazmakta Olan Mesajları Değiştirin.
+    "Sizlere En İyi Hizmeti Vermekte.", // Sadece Tırnak Yani " İşareti İçinde Yazmakta Olan Mesajları Değiştirin.
+    "Sizin Geleceğiniz İçin Çalışıyoruz.", // Sadece Tırnak Yani " İşareti İçinde Yazmakta Olan Mesajları Değiştirin.
+    ]; 
+
+client.on('ready', () => {
+    setInterval(() => {
+        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // Bu Kısımları Ellemeyin
+        client.user.setActivity(activities_list[index]); // Bu Kısımları Ellemeyin.
+    }, 2000); // Selam 1 Saniye = 1000 MiliSaniye Yapar - Kısacası Böyle Bırakırsan - 3 Saniyede 1 Değişir. 
+});
 
 ////////////////////////
 
