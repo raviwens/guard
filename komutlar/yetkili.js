@@ -7,8 +7,14 @@ exports.run = (client, message, args) => {
     const embed = new Discord.RichEmbed()
     .setColor("RANDOM")
     .setAuthor(`${client.user.username} Yetkili Komutları`)
-    .addField('/çekiliş', 'Çekiliş Yapar.')('/temizle <sayı>', 'Yazdığınız Sayı Kadar Mesaj Siler')('/küfür-engelle <aç>/<kapat>', 'Küfür Engelini Açar/Kapatır.')('/link-engelle <aç/kapat>', 'Link Engelini Açar/Kapatır')('prefix+komut', 'açıklama/kullanım amacı')('prefix+komut', 'açıklama/kullanım amacı')//ne kadar yetkili komutunuz varsa o kadar .addField('prefix+komut', 'açıklama/kullanım amacı') koyun
-    .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=${botid}&scope=bot&permissions=8) **|** [Destek Sunucusu](https://discord.gg/BAĞLANTI) **|** [Bota Oy Ver (Vote)](https://discordbots.org/bot/${botid}/vote) **|** [Web Sitesi]()`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
+    .addField('/çekiliş', 'Çekiliş Yapar.')
+    .addField('/temizle <sayı>', 'Yazdığınız Sayı Kadar Mesaj Siler')
+    .addField('/küfür-engelle <aç>/<kapat>', 'Küfür Engelini Açar/Kapatır.')
+    .addField('/link-engelle <aç/kapat>', 'Link Engelini Açar/Kapatır.')
+    .addField('/mod-log-ayarla <#kanal>', 'ModLog Kanalını Ayarlar. Ayarlandığında Kapatılamaz.')
+    .addField('/giriş-çıkış-ayarla <#kanal>', 'Giriş Çıkışı Ayarlar.')
+    .addField('/kilit <sayı>', 'Odayı İstediğiniz süreyle Kilitler. Örn: /kilit 5 seconds')
+    .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/aRmB6CW) **|** [Bota Oy Ver (Bakımda)]() `)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
     message.channel.sendEmbed(embed);
 
 };
