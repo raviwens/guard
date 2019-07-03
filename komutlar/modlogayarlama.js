@@ -45,7 +45,7 @@ exports.conf = {
 
 exports.help = {
     name: 'mod-log-ayarla',
-    description: 'Mod log kanalını ayarlar.',
+    description: 'Mod log kanalını ayarlar. [Ayarlandığında Kapatılamaz]',
     usage: 'mod-log-ayarla <#kanal>'
 }
 
