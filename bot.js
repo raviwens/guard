@@ -16,6 +16,7 @@ const http = require('http');
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
     }, 280000);
 const Jimp = require('jimp');
+const jinp = require('jimp');
 const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
@@ -507,31 +508,7 @@ client.on('message', msg => {
 client.on('message', async (msg, member, guild) => {
   let i = await  db.fetch(`saas_${msg.guild.id}`)
       if(i === 'açık') {
-        if (msg.content.toLowerCase() === 'sa') {
-        msg.reply('Aleyküm Selam Hoşgeldin');      
-      } 
-      }
-    }); 
-client.on('message', async (msg, member, guild) => {
-  let i = await  db.fetch(`saas_${msg.guild.id}`)
-      if(i === 'açık') {
-        if (msg.content.toLowerCase() === 'sea') {
-        msg.reply('Aleyküm Selam Hoşgeldin');      
-      } 
-      }
-    }); 
-client.on('message', async (msg, member, guild) => {
-  let i = await  db.fetch(`saas_${msg.guild.id}`)
-      if(i === 'açık') {
-        if (msg.content.toLowerCase() === 'selamun aleyküm') {
-        msg.reply('Aleyküm Selam Hoşgeldin');      
-      } 
-      }
-    }); 
-client.on('message', async (msg, member, guild) => {
-  let i = await  db.fetch(`saas_${msg.guild.id}`)
-      if(i === 'açık') {
-        if (msg.content.toLowerCase() === 'selam') {
+        if (msg.content.toLowerCase() === 'sa', 'selam', 'selamun aleyküm', 'sea') {
         msg.reply('Aleyküm Selam Hoşgeldin');      
       } 
       }
