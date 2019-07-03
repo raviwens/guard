@@ -4,17 +4,6 @@ const client = new Discord.Client();
 const db = require ('quick.db');
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
-const express = require('express')
-const app = express();
-const http = require('http');
-    app.get("/", (request, response) => {
-    console.log(` az önce pinglenmedi. Sonra ponglanmadı... ya da başka bir şeyler olmadı.`);
-    response.sendStatus(200);
-    });
-    app.listen(process.env.PORT);
-    setInterval(() => {
-    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-    }, 280000);
 const Jimp = require('jimp');
 const jinp = require('jimp');
 const fs = require('fs');
@@ -171,7 +160,7 @@ client.on("guildMemberAdd", async member => {
         if (gözelkanal === undefined || gözelkanal === null) return;
         if (gözelkanal.type === "text") {
             const bg = await Jimp.read("https://cdn.discordapp.com/attachments/450693709076365323/473184528148725780/guildAdd.png");
-            const userimg = await Jimp.read(member.user.avatarID);
+            const userimg = await Jimp.read(member.user.avatarURL);
             var font;
             if (member.user.tag.length < 15) font = await Jimp.loadFont(Jimp.FONT_SANS_128_WHITE);
             else if (member.user.tag.length > 15) font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
@@ -197,7 +186,7 @@ client.on("guildMemberRemove", async member => {
         if (gözelkanal === undefined || gözelkanal === null) return;
         if (gözelkanal.type === "text") {            
                         const bg = await Jimp.read("https://cdn.discordapp.com/attachments/450693709076365323/473184546477572107/guildRemove.png");
-            const userimg = await Jimp.read(member.user.avatarID);
+            const userimg = await Jimp.read(member.user.avatarURL);
             var font;
             if (member.user.tag.length < 15) font = await Jimp.loadFont(Jimp.FONT_SANS_128_WHITE);
             else if (member.user.tag.length > 15) font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
@@ -505,13 +494,5 @@ client.on('message', msg => {
   }
 });
 
-client.on('message', async (msg, member, guild) => {
-  let i = await  db.fetch(`saas_${msg.guild.id}`)
-      if(i === 'açık') {
-        if (msg.content.toLowerCase() === 'sa', 'selam', 'selamun aleyküm', 'sea') {
-        msg.reply('Aleyküm Selam Hoşgeldin');      
-      } 
-      }
-    }); 
 
 client.login(ayarlar.token);
