@@ -71,6 +71,7 @@ dependencies:
   snekfetch: 4.0.4
   speedtest-net: 1.5.1
   sqlite: 3.0.3
+  sqlite3: 4.0.9
   steam-market-search: 1.1.3
   steam-provider: 0.2.0
   superagent: 5.1.0
@@ -6302,6 +6303,7 @@ specifiers:
   snekfetch: ^4.0.4
   speedtest-net: ^1.5.1
   sqlite: ^3.0.3
+  sqlite3: ^4.0.9
   steam-market-search: ^1.1.2
   steam-provider: ^0.2.0
   superagent: ^5.1.0
