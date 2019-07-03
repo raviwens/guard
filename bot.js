@@ -88,7 +88,7 @@ client.unload = command => {
 };
 
 client.on("message", msg => { 
-if (!linkEngel[msg.guild.id]) return;
+if (!linkEngel[msg.guild.ID]) return;
 if (linkEngel[msg.guild.id].linkEngel === "kapali") return;
     if (linkEngel[msg.guild.id].linkEngel === "acik") {
     var regex = new RegExp(/(discord.gg|http|.gg|.com|.net|.org|invite|İnstagram|Facebook|watch|Youtube|youtube|facebook|instagram)/)
