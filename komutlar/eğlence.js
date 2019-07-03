@@ -13,7 +13,7 @@ exports.run = (client, message, args) => {
     .addField('/emojiyazı <yazı>', 'Yazınızı Emojiyle Yazar')
     .addField('/sigara', 'Dertli Tim :)')
     .addField('/spoiler <yazı>', 'Bota Spoiler Verdirtir :)')
-    .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/V3jgrXD) **|** [Bota Oy Ver (BAKIMDA)]() **|** [Web Sitesi]()`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
+    .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/aRmB6CW) **|** [Bota Oy Ver (BAKIMDA)]() **|** [Web Sitesi]()`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
     message.channel.sendEmbed(embed);
 
 };

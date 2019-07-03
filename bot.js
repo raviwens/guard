@@ -690,4 +690,15 @@ let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
     hgK.send(embedds4)
 })
 
+
+  client.on(`guildMemberAdd`, async member => {
+  const e = new Discord.RichEmbed()
+    .setColor(`RANDOM`)
+    .setImage(`https://media.giphy.com/media/l4JyOCNEfXvVYEqB2/giphy.gif`)
+    .addField(`***Sunucumuza Geldiğin İçin Teşekkürler.!***`, `Live Security İyi Eğlenceler diler`)
+    .addField(`Davet Linkleri;`, `[Botu Sunucuna Eklemek için Tıkla](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847)\n[Botun Destek Sunucusu](https://discord.gg/aRmB6CW)`)
+    .setFooter(`Bu Sunucu 7/24 Live Security TR tarafından korunuyor.`)
+  member.send(e);
+});
+
 client.login(ayarlar.token);

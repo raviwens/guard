@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
         .setTitle(`${client.user.username} - Komutlar`)
         .setDescription(`:white_small_square: | **${ayarlar.prefix}yetkili** Moderasyon Komutları.\n :white_small_square: | **${ayarlar.prefix}kullanıcı** Kullanıcı Komutları.\n :white_small_square: |  **${ayarlar.prefix}eğlence** Eğlence Komutları.\n`)
         .setThumbnail(client.user.avatarURL)
-        .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/V3jgrXD) **|** [Bota Oy Ver (Bakımda)]( `)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
+        .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/aRmB6CW) **|** [Bota Oy Ver (Bakımda)]( `)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
         .setFooter(`${message.author.username} Tarafından İstendi.`, message.author.avatarURL)
     return message.channel.sendEmbed(embed);
   
