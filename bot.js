@@ -495,253 +495,177 @@ client.on('message', msg => {
 });
 
 
-Save  New  Duplicate & Edit  Just Text
-const botadi = "BOTADİ"
+client.on('guildBanAdd', async (guild, member) => {
+    const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = member.guild.channels.get(gc[member.guild.id].gkanal)
+    if (!hgK) return;
+   const embed = new Discord.RichEmbed()
+			.setTitle('Üye yasaklandı.')
+			.setAuthor(member.user.tag, member.user.avatarURL)
+			.setColor('RANDOM')
+			.setDescription(`<@!${member.user.id}>, ${member.user.tag}`)
+			.setThumbnail(member.user.avatarURL)
+			.setFooter(`Botismi Mod-Log Sistemi | ID: ${member.user.id}`)
+			.setTimestamp();
+			hgK.send({embed});
 
-client.on('messageDelete', message => {
-  let modlogs = db.get(`modlogkanaly_${message.guild.id}`)
-  const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    if (message.content.length > 1024) {
-      modlogkanal.send({embed: {
-    color: 3447003,
-    author: {
-      name: `${message.author.tag} tarafından gönderilen bir mesaj silindi`,
-      icon_url: message.author.DisplayAvatarURL
-    },
-    fields: [{
-        name: `Silinen mesaj 1024 karakterden fazla mesajı gösteremem`,
-        value: `\`\`\`Bilinmiyor...\`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      icon_url: message.author.DisplayAvatarURL,
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-});
-    } else {
-      modlogkanal.send({embed: {
-    color: 3447003,
-    author: {
-      name: `${message.author.tag} kullanıcısının mesajı silindi\n`,
-      icon_url: message.author.DisplayAvatarURL
-    },
-    fields: [{
-        name: `Silinen mesaj:`,
-        value: `\`\`\` ${message.content} \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      icon_url: message.author.DisplayAvatarURL,
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-});
-    }
-  }
+		
+	})
+	
+	.on('guildBanRemove', async (guild, member) => {
+		    const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = member.guild.channels.get(gc[member.guild.id].gkanal)
+    if (!hgK) return;
+			var embed = new Discord.RichEmbed()
+			.setTitle('Üyenin yasaklaması kaldırıldı.')
+			.setAuthor(member.user.tag, member.user.avatarURL)
+			.setColor('RANDOM')
+			.setDescription(`<@!${member.user.id}>, ${member.user.tag}`)
+			.setThumbnail(member.user.avatarURL)
+			.setFooter(`Botismi Mod-Log Sistemi | ID: ${member.user.id}`)
+			.setTimestamp();
+			hgK.send({embed});
+		
+	})
+
+
+	.on('messageDelete', async msg => {
+		if (!msg.guild) return;
+    const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = msg.guild.channels.get(gc[msg.guild.id].gkanal)
+    if (!hgK) return;
+			var embed = new Discord.RichEmbed()
+			.setAuthor(msg.author.tag, msg.author.avatarURL)
+			.setColor('RANDOM')
+			.setDescription(`<@!${msg.author.id}> tarafından <#${msg.channel.id}> kanalına gönderilen "${msg.content}" mesajı silindi.`)
+		.setFooter(`Botismi Mod-Log Sistemi | ID: ${msg.id}`)
+			hgK.send({embed});
+		
+	})
+
+	.on('channelCreate', async channel => {
+		if (!channel.guild) return;
+    const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = channel.guild.channels.get(gc[channel.guild.id].gkanal)
+    if (!hgK) return;		
+			if (channel.type === "text") {
+				var embed = new Discord.RichEmbed()
+				.setColor('RANDOM')
+				.setAuthor(channel.guild.name, channel.guild.iconURL)
+				.setDescription(`<#${channel.id}> kanalı oluşturuldu. _(metin kanalı)_`)
+				.setFooter(`Botismi Mod-Log Sistemi | ID: ${channel.id}`)
+				hgK.send({embed});
+			};
+			if (channel.type === "voice") {
+				var embed = new Discord.RichEmbed()
+					.setColor('RANDOM')
+				.setAuthor(channel.guild.name, channel.guild.iconURL)
+				.setDescription(`${channel.name} kanalı oluşturuldu. _(sesli kanal)_`)
+			.setFooter(`Botismi Mod-Log Sistemi | ID: ${channel.id}`)
+				hgK.send({embed});
+			}
+		
+	})
+		
+	.on('channelDelete', async channel => {
+		    const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = channel.guild.channels.get(gc[channel.guild.id].gkanal)
+    if (!hgK) return;
+			if (channel.type === "text") {
+				let embed = new Discord.RichEmbed()
+					.setColor('RANDOM')
+				.setAuthor(channel.guild.name, channel.guild.iconURL)
+				.setDescription(`${channel.name} kanalı silindi. _(metin kanalı)_`)
+				.setFooter(`Botismi Mod-Log Sistemi | ID: ${channel.id}`)
+				hgK.send({embed});
+			};
+			if (channel.type === "voice") {
+				let embed = new Discord.RichEmbed()
+				.setColor('RANDOM')
+				.setAuthor(channel.guild.name, channel.guild.iconURL)
+				.setDescription(`${channel.name} kanalı silindi. _(sesli kanal)_`)
+			.setFooter(`Botismi Mod-Log Sistemi | ID: ${channel.id}`)
+				hgK.send({embed});
+			}
+		
+	})
+
+.on('roleDelete', async role => {
+  const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = role.guild.channels.get(gc[role.guild.id].gkanal)
+    if (!hgK) return;
+  let embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor(`Rol Silindi!`)
+        .setThumbnail(role.guild.iconURL)
+        .setDescription(`'${role.name}' adlı rol silindi.`, true)
+  .setFooter(`Botismi Mod-Log Sistemi | ID: ${role.id}`)
+    hgK.send({embed})
 })
 
-
-client.on('guildBanAdd', async (guild, user) => {
-  let modlogs = db.get(`modlogkanaly_${guild.id}`)
-  const modlogkanal = guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    let embed = new Discord.RichEmbed()
-    .setColor("3447003")
-    .setAuthor("Bir kişi sunucudan yasaklandı")
-    .setThumbnail(user.avatarURL||user.defaultAvatarURL)
-    .addField(`Yasaklanan kişi`, `\`\`\` ${user.tag} \`\`\` `)
-    .setFooter(`${botadi} | Mod-Log Sistemi`)
-    .setTimestamp()
-    modlogkanal.send(embed)
-  }
-});
-
-client.on('guildBanRemove', async (guild, user) => {
-  let modlogs = db.get(`modlogkanaly_${guild.id}`)
-  const modlogkanal = guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    let embed = new Discord.RichEmbed()
-    .setColor("3447003")
-    .setAuthor("Bir kişinin yasağı kaldırıldı")
-    .setThumbnail(user.avatarURL||user.defaultAvatarURL)
-    .addField(`Yasağı kaldırılan kişi`, `\`\`\` ${user.tag} \`\`\` `)
-    .setFooter(`${botadi} | Mod-Log Sistemi`)
-    .setTimestamp()
-    modlogkanal.send(embed)
-  }
-});
-
-client.on('channelCreate', async channel => {
-  let modlogs = db.get(`modlogkanaly_${channel.guild.id}`)
-  const modlogkanal = channel.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    if (channel.type === "text") {
-      modlogkanal.send({embed: {
-      color: 3447003,
-      fields: [{
-          name: `Bir Kanal Oluşturuldu. \nOluşturulan Kanalin İsmi:`,
-          value: `\`\`\` ${channel.name} \`\`\``
-        },
-        {
-          name: `Oluşturulan Kanalin Türü`,
-          value: `\`\`\` Metin Kanalı \`\`\``
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${botadi} | Mod-Log Sistemi`
-      }
-     }});
-    } else {
-      if (channel.type === "voice") {
-       modlogkanal.send({embed: {
-    color: 3447003,
-    fields: [{
-        name: `Bir Kanal Oluşturuldu. \nOluşturulan Kanalin İsmi:`,
-        value: `\`\`\` ${channel.name} \`\`\``
-      },
-      {
-        name: `Oluşturulan Kanalin Türü`,
-        value: `\`\`\` Ses Kanalı \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-}); 
-      }
-    }
-  }
-});
-
-client.on('channelDelete', async channel => {
-  let modlogs = db.get(`modlogkanaly_${channel.guild.id}`)
-  const modlogkanal = channel.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    if (channel.type === "text") {
-      modlogkanal.send({embed: {
-      color: 3447003,
-    fields: [{
-        name: `Bir Kanal Silindi. \nSilinen Kanalin İsmi:`,
-        value: `\`\`\` ${channel.name} \`\`\``
-      },
-      {
-        name: `Silinen Kanalin Türü`,
-        value: `\`\`\` Ses Kanalı \`\`\``
-      }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${botadi} | Mod-Log Sistemi`
-      }
-     }});
-    } else {
-      if (channel.type === "voice") {
-       modlogkanal.send({embed: {
-    color: 3447003,
-    fields: [{
-        name: `Bir Kanal Silindi. \nSilinen Kanalin İsmi:`,
-        value: `\`\`\` ${channel.name} \`\`\``
-      },
-      {
-        name: `Silinen Kanalin Türü`,
-        value: `\`\`\` Ses Kanalı \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-}); 
-      }
-    }
-  }
-});
-
-client.on('roleDelete', async role => {
-  let modlogs = db.get(`modlogkanaly_${role.guild.id}`)
-  const modlogkanal = role.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    modlogkanal.send({embed: {
-    color: 3447003,
-    fields: [{
-        name: `Bir Rol Silindi. \nSilinen Rolun İsmi:`,
-        value: `\`\`\` ${role.name} \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-});
-  }
-});
-
-client.on('emojiDelete', async emoji => {
-  let modlogs = db.get(`modlogkanaly_${emoji.guild.id}`)
-  const modlogkanal = emoji.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    modlogkanal.send({embed: {
-    color: 3447003,
-    fields: [{
-        name: `Bir Emoji Silindi. \nSilinen Emojinin İsmi:`,
-        value: `\`\`\` ${emoji.name} \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-});
+.on('emojiCreate', async emoji => {
+  const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
   
-  }
-});
+  const hgK = emoji.guild.channels.get(gc[emoji.guild.id].gkanal)
+    if (!hgK) return;
+  let embedds9 = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor(`Emoji Oluşturuldu!`)
+        .setThumbnail(emoji.guild.iconURL)
+        .setDescription(`<:${emoji.name}:${emoji.id}> - ${emoji.name} adlı emoji oluşturuldu!`, true)
+  .setFooter(`Botismi Mod-Log Sistemi | ID: ${emoji.id}`)
+    hgK.send({embedds9})
+})
 
+.on('emojiDelete', async emoji => {
+  const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = emoji.guild.channels.get(gc[emoji.guild.id].gkanal)
+    if (!hgK) return;
+  let embedds0 = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor(`Emoji Silindi!`)
+        .setThumbnail(emoji.guild.iconURL)
+        .setDescription(`':${emoji.name}:' adlı emoji silindi!`, true)
+  	.setFooter(`Botismi Mod-Log Sistemi | ID: ${emoji.id}`)
+   hgK.send(embedds0)
+})
 
-client.on('roleCreate', async role => {
-  let modlogs = db.get(`modlogkanaly_${role.guild.id}`)
-  const modlogkanal = role.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-     modlogkanal.send({embed: {
-    color: 3447003,
-    fields: [{
-        name: `Yeni Bir Rol Oluşturuldu. \nOluşturulan Rolun İsmi:`,
-        value: `\`\`\` ${role.name} \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      text: `${botadi} | Mod-Log Sistemi`
-    }
-  }
-});
-  }
-});
+.on('roleCreate', async role => {
+  const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+  
+  const hgK = role.guild.channels.get(gc[role.guild.id].gkanal)
+    if (!hgK) return;
+  let embedds0 = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor(`Rol Oluşturuldu!`)
+        .setThumbnail(role.guild.iconURL)
+        .setDescription(`'${role.name}' adlı rol oluşturuldu.`, true)
+  .setFooter(`Botismi Mod-Log Sistemi | ID: ${role.id}`)
+   hgK.send(embedds0)
+})
 
-
-client.on('messageUpdate', async (oldMessage, newMessage) => {
-  let modlogs = db.get(`modlogkanaly_${oldMessage.guild.id}`)
-  const modlogkanal = oldMessage.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    if (oldMessage.author.bot) {
+.on('messageUpdate', async (oldMessage, newMessage) => {
+   const fs = require('fs');
+let gc = JSON.parse(fs.readFileSync("./sunucuyaözelayarlar/log.json", "utf8"));
+   const hgK = oldMessage.guild.channels.get(gc[oldMessage.guild.id].gkanal)
+    if (!hgK) return;
+      if (oldMessage.author.bot) {
         return false;
     }
 
@@ -752,52 +676,18 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     if (oldMessage.content == newMessage.content) {
         return false;
     }
-    modlogkanal.send({embed: {
-      color: 3447003,
-      author: {
-      name: `${oldMessage.author.tag} mesajını düzenledi:\n`,
-      icon_url: oldMessage.author.DisplayAvatarURL
-      },
-      fields: [{
-        name: `Eski mesaj:`,
-        value: `\`\`\` ${oldMessage.content} \`\`\``
-      },
-      {
-        name: `Yeni Mesaj:`,
-        value: `\`\`\` ${newMessage.content} \`\`\``
-      }
-      ],
-      timestamp: new Date(),
-      footer: {
-      icon_url: oldMessage.author.DisplayAvatarURL,
-      text: `${botadi} | Mod-Log Sistemi`
-      }
-    }
-    });
-  }
-});
 
-
-client.on('emojiCreate', async emoji => {
-  let modlogs = db.get(`modlogkanaly_${emoji.guild.id}`)
-  const modlogkanal = emoji.guild.channels.find(kanal => kanal.id === modlogs);
-  if(!modlogs) return;
-  if(modlogs) {
-    modlogkanal.send({embed: {
-    color: 3447003,
-    fields: [{
-        name: `Bir emoji eklendi. \nEklenen Emojinin İsmi:`,
-        value: `\`\`\` ${emoji.name} \`\`\``
-      }
-    ],
-    timestamp: new Date(),
-    footer: {
-      text: `${botadi} | Mod-Log Sistemi`
-    } 
-   } 
-});
-  }
-});
-
+    if (!oldMessage || !oldMessage.id || !oldMessage.content || !oldMessage.guild) return;
+  let embedds4 = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor(`Mesaj Güncellendi!`)
+        .setThumbnail(oldMessage.author.avatarURL)
+        .addField("Gönderen", oldMessage.author.tag, true)
+        .addField("Önceki Mesaj", oldMessage.content, true)
+        .addField("Şimdiki Mesaj", newMessage.content, true)
+        .addField("Kanal", newMessage.channel.name, true)
+  	.setFooter(`Botismi Mod-Log Sistemi | ID: ${oldMessage.id}`)
+    hgK.send(embedds4)
+})
 
 client.login(ayarlar.token);
