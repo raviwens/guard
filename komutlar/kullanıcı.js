@@ -7,18 +7,11 @@ exports.run = (client, message, args) => {
     const embed = new Discord.RichEmbed()
     .setColor("RANDOM")
     .setAuthor(`${client.user.username} Kullanıcı Komutları`)
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')//ne kadar kullanıcı komutunuz varsa o kadar .addField('prefix+komut', 'açıklama/kullanım amacı') koyun
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    .addField('prefix+komut', 'açıklama/kullanım amacı')
-    
-    .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=${botid}&scope=bot&permissions=8) **|** [Destek Sunucusu](https://discord.gg/BAĞLANTI) **|** [Bota Oy Ver (Vote)](https://discordbots.org/bot/${botid}/vote) **|** [Web Sitesi]()`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
+    .addField('/oylama <yazı>', 'Oylama Yapmanızı Sağlar.')
+    .addField('/sunucubilgi', 'Sunucu Hakkında Bilgi Almanızı Sağlar.')
+    .addField('/talep', 'Kendinize Özel Destek Talebi Açar.')
+    .addField('/sunucular', 'Botun Hangi Sunucularda Olduğunu Gösterir
+    .addField(`» Linkler`, `[Bot Davet Linki] (https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/V3jgrXD) **|** [Bota Oy Ver (Vote)](https://discordbots.org/bot/${botid}/vote) **|** [Web Sitesi]()`)//websiteniz yoksa  **|** [Web Sitesi]() yeri silebilirsiniz
     message.channel.sendEmbed(embed);
 
 };
