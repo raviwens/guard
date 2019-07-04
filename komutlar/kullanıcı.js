@@ -12,6 +12,7 @@ exports.run = (client, message, args) => {
     .addField('/talep', 'Kendinize Özel Destek Talebi Açar.')
     .addField('/sunucular', 'Botun Hangi Sunucularda Olduğunu Gösterir')
     .addField('/tavsiye <tavsiyeniz>', 'Botun Kurucusuna Tavsiyelerinizi Gönderir.')
+    .addField('/elraenn', 'Rasgele Elraenn Fotoğrafları Atar.')
     .addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=594977847613849640&scope=bot&permissions=2146958847) **|** [Destek Sunucusu](https://discord.gg/aRmB6CW) **|** [Bota Oy Ver (Bakımda)]( `)
     message.channel.sendEmbed(embed);
 
