@@ -1,11 +1,14 @@
 const Discord = require('discord.js');
 
  exports.run = (client, message, args) => {
+   if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(`Bu komutu kullanabilmek için "\`Yönetici\`" yetkisine sahip olmalısın.`);
    message.delete();
 
    let question = args.join(' ');
 
    let user = message.author.username
+   
+  
 
    if (!question) return message.channel.sendEmbed(
 
@@ -38,7 +41,7 @@ const Discord = require('discord.js');
        guildOnly: false,
        aliases: ['oylama'],
 
-  permLevel: 2
+  permLevel: 4
 };
 
 exports.help = {
