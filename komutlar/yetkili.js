@@ -8,6 +8,7 @@ exports.run = (client, message, args) => {
     .setColor("RANDOM")
     .setAuthor(`${client.user.username} Yetkili Komutları`)
     .addField('/çekiliş', 'Çekiliş Yapar.')
+    .addField('/oylama <yazı>', 'Oylama Yapar.')
     .addField('/temizle <sayı>', 'Yazdığınız Sayı Kadar Mesaj Siler')
     .addField('/küfür-engelle <aç>/<kapat>', 'Küfür Engelini Açar/Kapatır.')
     .addField('/link-engelle <aç/kapat>', 'Link Engelini Açar/Kapatır.')
