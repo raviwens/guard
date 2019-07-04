@@ -18,7 +18,7 @@ const http = require('http');
     app.listen(process.env.PORT);
     setInterval(() => {
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-    }, 150000);
+    }, 280000);
 const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
