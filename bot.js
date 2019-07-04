@@ -902,7 +902,7 @@ let rrrsembed = new Discord.RichEmbed()
 .addField("Sunucunun Kurulu Olduğu Bölge:", guild.region)
 .addField("Sunucudaki Kişi Sayısı:", guild.memberCount)
 
-   client.channels.get('Kanalİd').send(rrrsembed);
+   client.channels.get('590602853899567146').send(rrrsembed);
   
 });
 
@@ -923,29 +923,5 @@ let rrrsembed = new Discord.RichEmbed()
   
 });
 
-client.on('guildCreate', async guild => {
-  const girismesaj = new Discord.RichEmbed()
-   .setTitle(`Botumuzu Sunucunuza Eklediğiniz için Teşekkürler`)
-   .setColor("GREEN")
-   .setThumbnail(client.user.avatarURL)
-   .setDescription(client.user.id "sunucunuza Eklendi. :white_check_mark: Botumuzun Özelliklerini Öğrenmek İçin " + ayarlar.prefix + "yardım Yazabilirsiniz." )
-    .addField("Botumuz" + client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString() + " Kullanıcıya Hizmet Vermektedir.")
-    .addField("Botumuz" + client.guilds.size + " Sunucuda Bulunmaktadır.")
-  guild.owner.send(girismesaj)
-});
-
-
-//Bot Ayrıldı Olarak Sunucu Kurucusuna Mesaj Atar.
-
-client.on('guildDelete', async guild => {
-  const cikismesaji = new Discord.RichEmbed()
-   .setTitle(`Botumuzu Sunucunuzdan Atılmasını İstemezdik.`)
-   .setColor("RED")
-   .setThumbnail(client.user.avatarURL)
-   .setDescription(client.user.id "Sunucunuzdan Atıldı.")
-    .addField("Bot Artık" + client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString() + " Kullanıcıya Hizmet Vermektedir.")
-    .addField("Bot Artık" + client.guilds.size + " Sunucuda Bulunmaktadır.")
-  guild.owner.send(cikismesaji)
-});
 
 client.login(ayarlar.token);
