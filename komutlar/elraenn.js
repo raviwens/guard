@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-    let replies = ["https://i.hizliresim.com/NLgD7L.jpg",];
+    let replies = ["https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/1tfsVFzg/12321.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/Ls4HRwK3/12312.jpg",];
 
     let result = Math.floor((Math.random() * replies.length));
 
