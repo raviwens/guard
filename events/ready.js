@@ -22,5 +22,5 @@ module.exports = client => {
         var random = Math.floor(Math.random()*(oyun.length-0+1)+0);
 
         client.user.setGame(oyun[random]);
-        }, 3000);
+        }, 12000);
 }
