@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+  
+
 
     let replies = ["https://i.postimg.cc/Ls4HRwK3/12312.jpg","https://i.postimg.cc/1tfsVFzg/12321.jpg","https://i.postimg.cc/KjTbJyBx/213211.jpg","https://i.postimg.cc/bJW8xvGm/89123.jpg","https://i.postimg.cc/sDpyWs3J/cnquwq.jpg","https://i.postimg.cc/g2mpqQJb/cnuwq.jpg","https://i.postimg.cc/6pcXHc22/feokwo.jpg","https://i.postimg.cc/gcLGY35Q/qc2.jpg","https://i.postimg.cc/TY8fhpvw/quwh.jpg","https://i.postimg.cc/s22RbW7n/qwec.jpg","https://i.postimg.cc/43FTG31X/qwewq.jpg","https://i.postimg.cc/Ss2bxpZC/qwewqcx.jpg","https://i.postimg.cc/LXcKq077/qwewqeq.jpg","https://i.postimg.cc/Y0QcQzBS/sadaw.jpg","https://i.postimg.cc/05SqgPKq/ss.jpg","https://i.postimg.cc/Dz0txT3H/tugkan-gonultas-elraenn-kimdir.jpg","https://i.postimg.cc/FRJwQVRx/vew.jpg","https://i.postimg.cc/SxDBLK3c/wq.jpg","https://i.postimg.cc/FHrtJSW9/wqeq.jpg","https://i.postimg.cc/MKb2T5YP/wqeqc.jpg","https://i.postimg.cc/1zdbTj9t/wqewq.jpg","https://i.postimg.cc/2yRMjLLN/wqewqec.jpg"];
 
@@ -10,7 +12,11 @@ module.exports.run = async (bot, message, args) => {
         .setTitle("Fotoğrafın! <a:heart:553341691822866442>")
         .setColor("RED")
         .setFooter(`Elraenn Fotoğraf!`, message.author.avatarURL)
+        .setFooter(`RidenLive Tarafından Editlenmiştir.`, message.author.avatarURL)
         .setImage(replies[result]);
+  
+    const embed = new Discord.RichEmbed()
+  .addField(' Bu Komut RidenLive Tarafından Editlenmiştir.')
 
     message.channel.send(gifembed);
 };
