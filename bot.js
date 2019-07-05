@@ -925,12 +925,12 @@ let rrrsembed = new Discord.RichEmbed()
 
 //SUNUCUYA ÖZEL EMOJİLİ KAYIT
 
-const yourID = ""; //Instructions on how to get this: https://redd.it/40zgse //Kendi İD'nizi Yazın
-const setupCMD = "" //İstediğiniz Komut Yapabilirsiniz örn : !kayıtol
-let initialMessage = ``; //Dilediğiniz Şeyi Yazabilirsiniz
-const roles = ["", ""]; //İstediğiniz Rolü Yazabilirsiniz
-const reactions = ["", ""]; //İstediğiniz Emojiyi Ekleyebilirsiniz
-const botToken = "";  //Buraya botunuzun tokenini koyunuz
+const yourID = "398903117451755523"; //Instructions on how to get this: https://redd.it/40zgse //Kendi İD'nizi Yazın
+const setupCMD = "!kayıtKayıtlı Üyeol" //İstediğiniz Komut Yapabilirsiniz örn : !kayıtol
+let initialMessage = `Kayıt Olmak İçin Aşağıdaki Emojiye Tıklaynız.`; //Dilediğiniz Şeyi Yazabilirsiniz
+const roles = ["Kayıtlı Üye"]; //İstediğiniz Rolü Yazabilirsiniz
+const reactions = ["🎉"]; //İstediğiniz Emojiyi Ekleyebilirsiniz
+const botToken = "NTk0OTc3ODQ3NjEzODQ5NjQw.XRkT3g.Z5-SvMfPDMLXQi0wS-u_Eod8i_E";  //Buraya botunuzun tokenini koyunuz
                      
 //Load up the bot...
 const discord = require('discord.js');
@@ -942,7 +942,7 @@ if (roles.length !== reactions.length) throw "Roles list and reactions list are 
 function generateMessages(){
     var messages = [];
     messages.push(initialMessage);
-    for (let role of roles) messages.push(`Kayıt Olmak İçin **"${role}"** Emojisine Tıkla!`); //DONT CHANGE THIS
+    for (let role of roles) messages.push(`Kayıt Olmak İçin Aşağıdaki Emojiye Tıklaynız.`); //DONT CHANGE THIS
     return messages;
 }
 bot.on("message", message => {
