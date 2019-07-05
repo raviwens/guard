@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js"); // BU KOMUT RİDENLİVE TARAFINDAN EDİTLENMİŞTİR.
 
 module.exports.run = async (bot, message, args) => {
   
@@ -15,8 +15,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter(`RidenLive Tarafından Editlenmiştir.`, message.author.avatarURL)
         .setImage(replies[result]);
   
-    const embed = new Discord.RichEmbed()
-  .addField(' Bu Komut RidenLive Tarafından Editlenmiştir.')
+
 
     message.channel.send(gifembed);
 };

@@ -15,8 +15,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter(`RidenLive Tarafından Editlenmiştir.`, message.author.avatarURL)
         .setImage(replies[result]);
   
-    const embed = new Discord.RichEmbed()
-  .addField(' Bu Komut RidenLive Tarafından Editlenmiştir.')
+
 
     message.channel.send(gifembed);
 };
