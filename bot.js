@@ -926,7 +926,7 @@ let rrrsembed = new Discord.RichEmbed()
 //SUNUCUYA ÖZEL EMOJİLİ KAYIT
 
 const yourID = "398903117451755523"; //Instructions on how to get this: https://redd.it/40zgse //Kendi İD'nizi Yazın
-const setupCMD = "!kayıtKayıtlı Üyeol" //İstediğiniz Komut Yapabilirsiniz örn : !kayıtol
+const setupCMD = "kayıtol" //İstediğiniz Komut Yapabilirsiniz örn : !kayıtol
 let initialMessage = `Kayıt Olmak İçin Aşağıdaki Emojiye Tıklaynız.`; //Dilediğiniz Şeyi Yazabilirsiniz
 const roles = ["Kayıtlı Üye"]; //İstediğiniz Rolü Yazabilirsiniz
 const reactions = ["🎉"]; //İstediğiniz Emojiyi Ekleyebilirsiniz
