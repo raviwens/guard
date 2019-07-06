@@ -986,4 +986,14 @@ bot.on('raw', event => {
     }   
 });
 
+
+
+
+
+
+
+
+
+
+
 client.login(ayarlar.token);
