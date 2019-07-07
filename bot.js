@@ -166,7 +166,7 @@ client.on("message", msg => {
 client.on('guildMemberAdd', member => {
   let guild = member.guild;
   let joinRole = guild.roles.find('name', 'Kayıtlı Üye');// 'Üye' yazılan yeri otomatik rol vereceği rolü yapabilirsiniz.//Otorol Komudu :)
-  member.sendMessage("Sunucuya Hoşgeldin Kardeşim **Destek Sunucuma Katılmak İçin** https://discord.gg/CQef5k5")//Sunucuya Yeni Biri Geldiğinde Mesaj Atar istediğini yaz.
+  member.sendMessage("Sunucuya Hoşgeldin Kardeşim **Destek Sunucuma Katılmak İçin** https://discord.gg/V3jgrXD")//Sunucuya Yeni Biri Geldiğinde Mesaj Atar istediğini yaz.
   member.addRole(joinRole);
 
   const channel = member.guild.channels.find('name', 'gelen-giden');// 'gelen-giden' log ismidir. değiştirebilirsiniz. belirttiğiniz isme giriş çıkış gösterecektir.
