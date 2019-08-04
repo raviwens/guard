@@ -189,9 +189,8 @@ client.on('guildMemberRemove', member => {
   .setThumbnail(member.user.avatarURL)
   .setTitle(`:outbox_tray: ${member.user.username} Sunucudan ayrıldı.`)
   .setTimestamp()
-  channel.sendEmbed(embed);
+channel.sendEmbed(embed);
 });
-
 
 client.on('message', async message => {
   const ms = require('ms');
