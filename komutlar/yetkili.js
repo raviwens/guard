@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const client = new Discord.Client();
 
 let botid = ('') //bu yere botun id'sini yapıştırın.
 //eğer botunuz dbl(discord bot list) de yoksa Bota Oy Ver (Vote) olmucaktır.
@@ -6,8 +7,8 @@ let botid = ('') //bu yere botun id'sini yapıştırın.
 exports.run = (client, message, args) => {
     const embed = new Discord.RichEmbed()
     .setColor("RANDOM")
-    .setAuthor(`${client.user.username} Yetkili Komutları`)
-    .addField('/çekiliş', 'Çekiliş Yapar.')
+    .setAuthor(`${client.user.username} Yetkili Komutları`) 
+    .addField('/çekiliş', 'Çekiliş Yapar.') 
     .addField('/oylama <yazı>', 'Oylama Yapar.')
     .addField('/temizle <sayı>', 'Yazdığınız Sayı Kadar Mesaj Siler')
     .addField('/küfür-engelle <aç>/<kapat>', 'Küfür Engelini Açar/Kapatır.')
