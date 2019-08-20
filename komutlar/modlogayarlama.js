@@ -12,7 +12,7 @@ if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu kom
         const embed = new Discord.RichEmbed()
         .setColor('RANDOM')
         .setTitle('Başarılı!')
-        .setDescription(':x: | Kayıt kanalı ayarlamak için b!kayıt-ayarla #kanal')
+        .setDescription(':x: | Modlog Kanalı Ayarlamak İçin h!mod-log-ayarla #kanal')
         message.channel.send({embed})
         return
     }
